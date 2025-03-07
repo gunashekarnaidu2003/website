@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Marketing | Creative Solutions for Your Business</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 60px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .logo span {
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #ff6b6b;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        /* Portfolio Section */
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-filters button {
+            padding: 8px 20px;
+            margin: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-filters button.active,
+        .portfolio-filters button:hover {
+            color: #ff6b6b;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 300px;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h4 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .portfolio-overlay p {
+            color: #ddd;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #f8f9fa;
+        }
+
+        .testimonial-slider {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 20px;
+        }
+
+        .testimonial {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .testimonial h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .testimonial span {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background-color: #ff6b6b;
+        }
+
+        /* Team Section */
+        .team {
+            background-color: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .team-member-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-member h3 {
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .team-member span {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-links a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #f1f2f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #ff6b6b;
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: #f8f9fa;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-widget h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-widget h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: #ff6b6b;
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-widget p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links li:hover {
+            opacity: 1;
+        }
+
+        .footer-newsletter p {
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .newsletter-form button {
+            padding: 10px 15px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-200%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 40px 0;
+            }
+
+            .service-card, .testimonial, .contact-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Apex<span>Marketing</span></div>
+                <div class="mobile-menu-btn">
+                    <i class="menu-icon">☰</i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Creative Solutions for Your Business Growth</h1>
+                <p>We help businesses scale through strategic marketing, innovative design, and digital transformations that drive real results.</p>
+                <a href="#contact" class="btn">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">We offer a comprehensive range of marketing solutions tailored to your specific needs</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i>📊</i>
+                    </div>
+                    <h3>Digital Marketing</h3>
+                    <p>Comprehensive digital marketing strategies including SEO, PPC, social media marketing, and email campaigns that drive traffic and convert leads.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i>🎨</i>
+                    </div>
+                    <h3>Brand Identity</h3>
+                    <p>Creating compelling brand identities with logo design, visual elements, and brand guidelines that resonate with your target audience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i>🖥️</i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom website design and development with responsive layouts, intuitive navigation, and conversion-focused elements.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i>📱</i>
+                    </div>
+                    <h3>Social Media</h3>
+                    <p>Strategic social media management to build your online presence, engage with your audience, and drive brand awareness.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i>📝</i>
+                    </div>
+                    <h3>Content Creation</h3>
+                    <p>High-quality content creation including blogs, articles, videos, and graphics that tell your brand story and engage your audience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i>📈</i>
+                    </div>
+                    <h3>Analytics & Reporting</h3>
+                    <p>Comprehensive analysis of marketing performance with actionable insights and regular reporting to optimize your strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section portfolio">
+        <div class="container">
+            <h2 class="section-title">Our Work</h2>
+            <p class="section-subtitle">Explore our recent projects and see how we've helped our clients succeed</p>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="digital">Digital Marketing</button>
+                <button class="filter-btn" data-filter="social">Social Media</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="branding">
+                    <img src="/api/placeholder/600/600" alt="Portfolio Item">
+                    <div class="portfolio-overlay">
+                        <h4>Brand Refresh</h4>
+                        <p>Branding / Identity</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <img src="/api/placeholder/600/600" alt="Portfolio Item">
+                    <div class="portfolio-overlay">
+                        <h4>E-Commerce Website</h4>
+                        <p>Web Design / Development</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="digital">
+                    <img src="/api/placeholder/600/600" alt="Portfolio Item">
+                    <div class="portfolio-overlay">
+                        <h4>SEO Campaign</h4>
+                        <p>Digital Marketing</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="social">
+                    <img src="/api/placeholder/600/600" alt="Portfolio Item">
+                    <div class="portfolio-overlay">
+                        <h4>Social Media Strategy</h4>
+                        <p>Social Media Marketing</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="branding">
+                    <img src="/api/placeholder/600/600" alt="Portfolio Item">
+                    <div class="portfolio-overlay">
+                        <h4>Product Packaging</h4>
+                        <p>Branding / Packaging</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <img src="/api/placeholder/600/600" alt="Portfolio Item">
+                    <div class="portfolio-overlay">
+                        <h4>Corporate Website</h4>
+                        <p>Web Design / UX</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <p class="section-subtitle">Hear what our clients have to say about our services</p>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-slides">
+                    <div class="testimonial-slide">
+                        <div class="testimonial">
+                            <img src="/api/placeholder/200/200" alt="Client">
+                            <p>"Apex Marketing completely transformed our online presence. Their strategic approach to digital marketing helped us increase our leads by 150% in just six months. Highly recommended!"</p>
+                            <h4>Sarah Johnson</h4>
+                            <span>CEO, TechStart Solutions</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial">
+                            <img src="/api/placeholder/200/200" alt="Client">
+                            <p>"The team at Apex is incredibly talented and dedicated. They took the time to understand our business goals and created a brand identity that perfectly captures our company values."</p>
+                            <h4>Michael Rodriguez</h4>
+                            <span>Founder, Eco Innovations</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial">
+                            <img src="/api/placeholder/200/200" alt="Client">
+                            <p>"Working with Apex Marketing has been a game-changer for our business. Their social media management has increased our engagement and helped us connect with our audience on a deeper level."</p>
+                            <h4>Emily Chen</h4>
+                            <span>Marketing Director, Urban Lifestyle</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section team">
+        <div class="container">
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-subtitle">The creative minds behind our successful marketing strategies</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="/api/placeholder/400/400" alt="Team Member">
+                    <div class="team-member-info">
+                        <h3>David Mitchell</h3>
+                        <span>Founder & CEO</span>
+                        <div class="social-links">
+                            <a href="#"><i>f</i></a>
+                            <a href="#"><i>t</i></a>
+                            <a href="#"><i>in</i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/400/400" alt="Team Member">
+                    <div class="team-member-info">
+                        <h3>Jessica Wilson</h3>
+                        <span>Creative Director</span>
+                        <div class="social-links">
+                            <a href="#"><i>f</i></a>
+                            <a href="#"><i>t</i></a>
+                            <a href="#"><i>in</i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/400/400" alt="Team Member">
+                    <div class="team-member-info">
+                        <h3>Mark Anderson</h3>
+                        <span>Digital Strategist</span>
+                        <div class="social-links">
+                            <a href="#"><i>f</i></a>
+                            <a href="#"><i>t</i></a>
+                            <a href="#"><i>in</i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/400/400" alt="Team Member">
+                    <div class="team-member-info">
+                        <h3>Sophia Lee</h3>
+                        <span>Web Developer</span>
+                        <div class="social-links">
+                            <a href="#"><i>f</i></a>
+                            <a href="#"><i>t</i></a>
+                            <a href="#"><i>in</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Have a project in mind? Contact us to discuss your marketing needs</p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i>📍</i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Our Office</h4>
+                            <p>123 Marketing Street, Creative District, New York, NY 10001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i>📞</i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i>✉️</i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@apexmarketing.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i>⏱️</i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Working Hours</h4>
+                            <p>Monday - Friday: 9AM - 6PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text"
